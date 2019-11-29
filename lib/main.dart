@@ -13,19 +13,23 @@ class ExpensePlanner extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Expense Planner'),
       ),
-      body: Column(children: <Widget>[
-        Card(child: Text('CHART!'), ),
-        Card(child: Text('LIST OF TX'),)
-      ] , ),
-      );
-
+      body: Column(
+        children: <Widget>[
+          Card(
+            child: Container(width: 100, child: Text('CHART!')),
+            elevation: 5,
+          ),
+          Card(
+            child: Text('LIST OF TX'),
+          )
+        ],
+      ),
+    );
   }
 }
