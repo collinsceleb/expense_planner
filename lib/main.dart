@@ -23,6 +23,12 @@ class MyHomePage extends StatelessWidget {
       amount: 78.99,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 'sb',
+      title: 'New Blazers',
+      amount: 780.99,
+      date: DateTime.now(),
+    ),
   ];
 
   @override
@@ -32,7 +38,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Expense Planner'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+//        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -41,6 +47,28 @@ class MyHomePage extends StatelessWidget {
               color: Colors.deepOrange,
               child: Text('CHART!'),
               elevation: 10,
+            ),
+          ),
+          Card(
+            elevation: 10,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: "Title"),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: "Amount"),
+                  ),
+                  FlatButton(
+                    child: Text("Add Transaction"),
+                    textColor: Colors.purple,
+                    onPressed: () {},
+                  )
+                ],
+              ),
             ),
           ),
           Column(
