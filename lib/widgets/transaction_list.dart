@@ -21,7 +21,7 @@ class TransactionList extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Colors.purple),
+                          color: Theme.of(context).primaryColor),
                     ),
                     margin:
                     EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -40,7 +40,7 @@ class TransactionList extends StatelessWidget {
                       Text(
                         DateFormat.yMMMEd().format(transactions[index].date),
                         style: TextStyle(
-                            color: Colors.grey,
+                            color: Theme.of(context).primaryColor,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.bold),
                       ),

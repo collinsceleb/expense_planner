@@ -10,7 +10,11 @@ class ExpensePlanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Expense Planner',
+      title: 'Personal Expense Planner',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.brown,
+      ),
       home: MyHomePage(),
     );
   }
@@ -65,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expense Planner'),
+        title: Text('Personal Expense Planner'),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.add),
