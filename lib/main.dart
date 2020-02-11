@@ -10,11 +10,20 @@ class ExpensePlanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Personal Expense Planner',
+      title: 'Personal Expense',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.brown,
-      ),
+          primarySwatch: Colors.purple,
+          accentColor: Colors.brown,
+          fontFamily: 'OpenSans',
+          appBarTheme:
+              AppBarTheme(
+                  textTheme: ThemeData.light().textTheme.copyWith(
+                    title: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ))),
       home: MyHomePage(),
     );
   }
@@ -69,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Personal Expense Planner'),
+        title: Text('Personal Expense'),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.add),
