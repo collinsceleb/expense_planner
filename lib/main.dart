@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_planner/models/transaction.dart';
 import 'package:expense_planner/widgets/transaction_list.dart';
+import 'package:expense_planner/widgets/chart.dart';
 
 void main() => runApp(ExpensePlanner());
 
@@ -15,9 +16,15 @@ class ExpensePlanner extends StatelessWidget {
           primarySwatch: Colors.purple,
           accentColor: Colors.brown,
           fontFamily: 'OpenSans',
-          appBarTheme:
-              AppBarTheme(
-                  textTheme: ThemeData.light().textTheme.copyWith(
+          textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            button: TextStyle(color: Colors.white)
+          ),
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
                     title: TextStyle(
                       fontFamily: 'OpenSans',
                       fontSize: 20,
@@ -36,25 +43,35 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 'sa',
-      title: 'New Shoes',
-      amount: 78.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 'sb',
-      title: 'New Blazers',
-      amount: 780.99,
-      date: DateTime.now(),
-    ),
+//    Transaction(
+//      id: 'sa',
+//      title: 'New Shoes',
+//      amount: 78.99,
+//      date: DateTime.now(),
+//    ),
+//    Transaction(
+//      id: 'sb',
+//      title: 'New Blazers',
+//      amount: 780.99,
+//      date: DateTime.now(),
+//    ),
   ];
 
-  void _addNewTransaction(String transactionTitle, double transactionAmount) {
+  List<Transaction> get _recentTransaction {
+    return _userTransactions.where((transaction) {
+      return transaction.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
+  void _addNewTransaction(String transactionTitle, double transactionAmount, DateTime chosenDate) {
     final newTransaction = Transaction(
         title: transactionTitle,
         amount: transactionAmount,
-        date: DateTime.now(),
+        date: chosenDate,
         id: DateTime.now().toString());
 
     setState(() {
@@ -72,6 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
             behavior: HitTestBehavior.opaque,
           );
         });
+  }
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((transaction) {
+        return transaction.id == id;
+      });
+    });
   }
 
   @override
@@ -98,7 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 10,
               ),
             ),
-            TransactionList(_userTransactions)
+            Chart(_recentTransaction),
+            TransactionList(_userTransactions, _deleteTransaction)
           ],
         ),
       ),
